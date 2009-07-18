@@ -11,12 +11,12 @@
 
 class PingdomApi
 {
-  const API_KEY = '66de9b3a058f7cf107234fecf1205b60';
-  const CHECK_NAME = 'havvgs life';
+  const API_KEY = '';
+  const CHECK_NAME = '';
   const TIME_PERIOD = 604799;
 
-  const USERNAME = 'tuebernickel@gmail.com';
-  const PASSWORD = '5D044d93?27ed';
+  const USERNAME = '';
+  const PASSWORD = '';
 
   /**
    * A reference to a Pingdom API client.
