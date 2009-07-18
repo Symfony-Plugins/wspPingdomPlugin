@@ -11,13 +11,8 @@
 
 class PingdomApi
 {
-  const API_KEY = '';
-  const CHECK_NAME = '';
-  const TIME_PERIOD = 604799;
-
-  const USERNAME = '';
-  const PASSWORD = '';
-
+  private $apiKey;
+  private $checkName;
   /**
    * A reference to a Pingdom API client.
    *
@@ -40,6 +35,18 @@ class PingdomApi
   public function __construct()
   {
     $this->pingdom = new PingdomApiClient();
+
+    $this->apiKey = sfConfig::get('app_wsp_pingdom_plugin_apikey', '');
+    $this->checkName = sfConfig::get('app_wsp_pingdom_plugin_checkname', '');
+  }
+
+  /**
+   * Get the check name for this api connection.
+   *
+   * @return string
+   */
+  public function getCheckName() {
+    $this->checkName;
   }
 
   /**
@@ -49,7 +56,7 @@ class PingdomApi
    */
   public function login()
   {
-    $this->response = $this->getClient()->authLogin(self::API_KEY, $this->getLoginCredentials());
+    $this->response = $this->getClient()->authLogin($this->apiKey, $this->getLoginCredentials());
 
     return ($this->response->getStatus() == PingdomApiClient::STATUS_OK);
   }
@@ -95,6 +102,6 @@ class PingdomApi
   {
     $login = new PingdomApiAuthCredentialsData();
 
-    return $login->setUsername(self::USERNAME)->setPassword(self::PASSWORD);
+    return $login->setUsername(sfConfig::get('app_wsp_pingdom_plugin_username', ''))->setPassword(sfConfig::get('app_wsp_pingdom_plugin_password', ''));
   }
 }
