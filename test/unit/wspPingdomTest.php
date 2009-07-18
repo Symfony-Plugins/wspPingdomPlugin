@@ -13,6 +13,8 @@ require_once(dirname(__FILE__) . '/../bootstrap/unit.php');
 
 $limeTest = new lime_test(20, new lime_output_color());
 
+sfContext::createInstance(ProjectConfiguration::getApplicationConfiguration('mkt', 'test', true));
+
 $pingdomApiClient = new PingdomApiClient();
 $limeTest->isa_ok($pingdomApiClient, 'PingdomApiClient', 'PingdomApiClient created');
 

@@ -46,7 +46,7 @@ class PingdomApi
    * @return string
    */
   public function getCheckName() {
-    $this->checkName;
+    return $this->checkName;
   }
 
   /**
