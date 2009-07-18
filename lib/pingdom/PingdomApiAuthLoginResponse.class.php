@@ -14,7 +14,8 @@
  *
  * @see http://www.pingdom.com/services/api-documentation/class_LoginResponse
  */
-class PingdomApiAuthLoginResponse extends PingdomApiResponse {
+class PingdomApiAuthLoginResponse extends PingdomApiResponse
+{
   /**
    * Session ID that will be used as authorization string for all web service calls. It expires after 30 minutes of inactivity, and cannot be used again. User can, however, log in again with the same credentials, and obtain new session ID
    *
@@ -22,12 +23,16 @@ class PingdomApiAuthLoginResponse extends PingdomApiResponse {
    */
   private $sessionId;
 
-  public function __construct(stdClass $apiResponse) {
+  public function __construct(stdClass $apiResponse)
+  {
     parent::__construct($apiResponse);
 
-    if (isset($apiResponse->sessionId)) {
+    if (isset($apiResponse->sessionId))
+    {
       $this->sessionId = $apiResponse->sessionId;
-    } else {
+    }
+    else
+    {
       throw new PingdomApiInvalidResponseException('The given response is no Auth_LoginResponse.', 3);
     }
   }
@@ -37,7 +42,8 @@ class PingdomApiAuthLoginResponse extends PingdomApiResponse {
    *
    * @return string
    */
-  public function getSessionId() {
+  public function getSessionId()
+  {
     return $this->sessionId;
   }
 }

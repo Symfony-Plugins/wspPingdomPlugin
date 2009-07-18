@@ -9,7 +9,8 @@
  * @link          $HeadURL$
  */
 
-class PingdomApiAuthCredentialsData {
+class PingdomApiAuthCredentialsData
+{
   public $username;
 
   public $password;
@@ -21,7 +22,8 @@ class PingdomApiAuthCredentialsData {
    *
    * @return PingdomAuthCredentials (this)
    */
-  public function setUsername($username) {
+  public function setUsername($username)
+  {
     $this->username = $username;
     return $this;
   }
@@ -33,7 +35,8 @@ class PingdomApiAuthCredentialsData {
    *
    * @return PingdomAuthCredentials (this)
    */
-  public function setPassword($password) {
+  public function setPassword($password)
+  {
     $this->password = $password;
     return $this;
   }
@@ -43,7 +46,8 @@ class PingdomApiAuthCredentialsData {
    *
    * @return bool
    */
-  public function validate() {
+  public function validate()
+  {
     return ($this->username != '' and $this->password != '');
   }
 }

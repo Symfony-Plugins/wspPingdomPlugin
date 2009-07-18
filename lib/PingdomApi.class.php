@@ -9,7 +9,8 @@
  * @link          $HeadURL$
  */
 
-class PingdomApi {
+class PingdomApi
+{
   const API_KEY = '';
   const CHECK_NAME = '';
   const TIME_PERIOD = 604799;
@@ -36,7 +37,8 @@ class PingdomApi {
    *
    * @return void
    */
-  public function __construct() {
+  public function __construct()
+  {
     $this->pingdom = new PingdomApiClient();
   }
 
@@ -45,7 +47,8 @@ class PingdomApi {
    *
    * @return bool
    */
-  public function login() {
+  public function login()
+  {
     $this->response = $this->getClient()->authLogin(self::API_KEY, $this->getLoginCredentials());
 
     return ($this->response->getStatus() == PingdomApiClient::STATUS_OK);
@@ -56,7 +59,8 @@ class PingdomApi {
    *
    * @return bool
    */
-  public function logout() {
+  public function logout()
+  {
     $this->response = $this->getClient()->authLogout();
 
     return ($this->response->getStatus() == PingdomApiClient::STATUS_OK);
@@ -67,7 +71,8 @@ class PingdomApi {
    *
    * @return PingdomApiClient
    */
-  public function getClient() {
+  public function getClient()
+  {
     return $this->pingdom;
   }
 
@@ -76,7 +81,8 @@ class PingdomApi {
    *
    * @return PingdomApiResponse
    */
-  public function getResponse() {
+  public function getResponse()
+  {
     return $this->response;
   }
 
@@ -85,7 +91,8 @@ class PingdomApi {
    *
    * @return PingdomApiAuthCredentialsData
    */
-  private function getLoginCredentials() {
+  private function getLoginCredentials()
+  {
     $login = new PingdomApiAuthCredentialsData();
 
     return $login->setUsername(self::USERNAME)->setPassword(self::PASSWORD);

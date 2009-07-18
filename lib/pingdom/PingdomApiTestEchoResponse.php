@@ -14,8 +14,8 @@
  *
  * @see http://www.pingdom.com/services/api-documentation/class_EchoResponse
  */
-class PingdomApiTestEchoResponse extends PingdomApiResponse {
-
+class PingdomApiTestEchoResponse extends PingdomApiResponse
+{
   /**
    * Out string.
    *
@@ -23,12 +23,16 @@ class PingdomApiTestEchoResponse extends PingdomApiResponse {
    */
   private $outString;
 
-  public function __construct(stdClass $apiResponse) {
+  public function __construct(stdClass $apiResponse)
+  {
     parent::__construct($apiResponse);
 
-    if (isset($apiResponse->outString)) {
+    if (isset($apiResponse->outString))
+    {
       $this->outString = $apiResponse->outString;
-    } else {
+    }
+    else
+    {
       throw new PingdomApiInvalidResponseException('The given response is no Test_EchoResponse.', 2);
     }
   }
@@ -38,7 +42,8 @@ class PingdomApiTestEchoResponse extends PingdomApiResponse {
    *
    * @return string
    */
-  public function getOutString() {
+  public function getOutString()
+  {
     return $this->outString;
   }
 }

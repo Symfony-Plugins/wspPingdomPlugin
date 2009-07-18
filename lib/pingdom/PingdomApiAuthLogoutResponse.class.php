@@ -14,7 +14,8 @@
  *
  * @see http://www.pingdom.com/services/api-documentation/class_LogoutResponse
  */
-class PingdomApiAuthLogoutResponse extends PingdomApiResponse {
+class PingdomApiAuthLogoutResponse extends PingdomApiResponse
+{
   /**
    * This response only returns a status code, which is handled by the PingdomApiResponse.
    */

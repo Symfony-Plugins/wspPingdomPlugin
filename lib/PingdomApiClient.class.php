@@ -15,7 +15,8 @@
  * @uses SoapClient
  * @see http://www.pingdom.com/services/api-documentation/
  */
-class PingdomApiClient {
+class PingdomApiClient
+{
   /**
    * The WSDL file for the Pingdom soap enbaled API.
    *
@@ -105,9 +106,11 @@ class PingdomApiClient {
    *
    * @return void
    */
-  public function __construct(array $options = null) {
+  public function __construct(array $options = null)
+  {
     # if no options are given
-    if (is_null($options)) {
+    if (is_null($options))
+    {
       # set default options
       $options = array('trace' => 0, 'exceptions' => 0);
     }
@@ -122,8 +125,10 @@ class PingdomApiClient {
    *
    * @return string
    */
-  public function getStatusMessageByCode($code) {
-    switch ($code) {
+  public function getStatusMessageByCode($code)
+  {
+    switch ($code)
+    {
       case self::STATUS_OK:
         return 'Everything went well.';
       case self::STATUS_INVALID_ARGUMENT:
@@ -148,7 +153,8 @@ class PingdomApiClient {
    *
    * @return stdClass
    */
-  public function Test_echo($string) {
+  public function Test_echo($string)
+  {
     return new PingdomApiTestEchoResponse($this->soap->Test_echo($string));
   }
 
@@ -159,8 +165,10 @@ class PingdomApiClient {
    *
    * @return stdClass
    */
-  protected function callSoapClient($method) {
-    if (!$method) {
+  protected function callSoapClient($method)
+  {
+    if (!$method)
+    {
       throw new PingdomApiException('Invalid method given.', 1);
     }
 
@@ -177,8 +185,10 @@ class PingdomApiClient {
    *
    * @return PingdomApiAuthLoginResponse
    */
-  public function authLogin($apiKey, PingdomApiAuthCredentialsData $credentials) {
-    if (!$credentials->validate()) {
+  public function authLogin($apiKey, PingdomApiAuthCredentialsData $credentials)
+  {
+    if (!$credentials->validate())
+    {
       throw new PingdomApiCredentialsException('Invalid credentials given for API Auth_login.', 1);
     }
 
@@ -195,7 +205,8 @@ class PingdomApiClient {
    *
    * @return string
    */
-  public function getSessionId() {
+  public function getSessionId()
+  {
     return $this->session_id;
   }
 
@@ -205,7 +216,8 @@ class PingdomApiClient {
    *
    * @return string
    */
-  public function getApiKey() {
+  public function getApiKey()
+  {
     return $this->apiKey;
   }
 
@@ -214,10 +226,12 @@ class PingdomApiClient {
    *
    * @return PingdomApiAuthLogoutResponse
    */
-  public function authLogout() {
+  public function authLogout()
+  {
     $response = new PingdomApiAuthLogoutResponse($this->callSoapClient('Auth_logout'));
 
-    if ($response->getStatus() == self::STATUS_OK) {
+    if ($response->getStatus() == self::STATUS_OK)
+    {
       $this->session_id = '';
       $this->apiKey = '';
     }
@@ -232,7 +246,8 @@ class PingdomApiClient {
    *
    * @return PingdomApiCheckGetListResponse
    */
-  public function getCheckList() {
+  public function getCheckList()
+  {
     return new PingdomApiCheckGetListResponse($this->callSoapClient('Check_getList'));
   }
 
@@ -241,7 +256,8 @@ class PingdomApiClient {
    *
    * @return PingdomApiLocationGetListResponse
    */
-  public function getLocationList() {
+  public function getLocationList()
+  {
     return new PingdomApiLocationGetListResponse($this->callSoapClient('Location_getList'));
   }
 
@@ -250,7 +266,8 @@ class PingdomApiClient {
    *
    * @return PingdomApiReportGetCurrentStatesResponse
    */
-  public function getCurrentReportStates() {
+  public function getCurrentReportStates()
+  {
     return new PingdomApiReportGetCurrentStatesResponse($this->callSoapClient('Report_getCurrentStates'));
   }
 
@@ -261,7 +278,8 @@ class PingdomApiClient {
    *
    * @return PingdomApiReportGetDowntimesReponse
    */
-  public function getDowntimesReport(PingdomApiReportGetDownTimesRequest $request) {
+  public function getDowntimesReport(PingdomApiReportGetDownTimesRequest $request)
+  {
     return new PingdomApiReportGetDowntimesReponse($this->callSoapClient('Report_getDowntimes', $request));
   }
 
@@ -270,7 +288,8 @@ class PingdomApiClient {
    *
    * @return PingdomApiReportGetLastDownsResponse
    */
-  public function getLastDownsReport() {
+  public function getLastDownsReport()
+  {
     return new PingdomApiReportGetLastDownsResponse($this->callSoapClient('Report_getLastDowns'));
   }
 }

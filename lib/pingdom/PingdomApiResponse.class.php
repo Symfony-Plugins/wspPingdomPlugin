@@ -17,7 +17,8 @@
  * @throws PingdomApiInvalidArgumentException
  * @throws PingdomApiInvalidResponseException
  */
-class PingdomApiResponse {
+class PingdomApiResponse
+{
   /**
    * Status of performed Auth_login function. List of status codes can be found here.
    *
@@ -28,10 +29,14 @@ class PingdomApiResponse {
   /**
    * Set up the current Pingdom API Response.
    */
-  public function __construct(stdClass $apiResponse) {
-    if (isset($apiResponse->status)) {
+  public function __construct(stdClass $apiResponse)
+  {
+    if (isset($apiResponse->status))
+    {
       $this->setStatus($apiResponse->status);
-    } else {
+    }
+    else
+    {
       throw new PingdomApiInvalidResponseException('The given response is no valid Pingdom API response.', 1);
     }
   }
@@ -43,10 +48,14 @@ class PingdomApiResponse {
    *
    * @return void
    */
-  protected final function setStatus($status) {
-    if (is_numeric($status)) {
+  protected final function setStatus($status)
+  {
+    if (is_numeric($status))
+    {
       $this->status = intval($status);
-    } else {
+    }
+    else
+     {
       throw new PingdomApiInvalidArgumentException('The given status code is invalid.', 1);
     }
   }
@@ -56,7 +65,8 @@ class PingdomApiResponse {
    *
    * @return int
    */
-  public function getStatus() {
+  public function getStatus()
+  {
     return $this->status;
   }
 }

@@ -14,7 +14,8 @@
  *
  * @see http://www.pingdom.com/services/api-documentation/
  */
-class PingdomApiRequest {
+class PingdomApiRequest
+{
   /**
    * Start of time period for notifications analysis.
    *
@@ -46,7 +47,8 @@ class PingdomApiRequest {
   /**
    * Set up the current Pingdom API Response.
    */
-  public function __construct(DateTime $from = null, DateTime $to = null, $pageNumber = null, $resultsPerPage = null) {
+  public function __construct(DateTime $from = null, DateTime $to = null, $pageNumber = null, $resultsPerPage = null)
+  {
 
     $this->toDate = $to;
     $this->pageNumber = $pageNumber;
@@ -61,7 +63,8 @@ class PingdomApiRequest {
    *
    * @return void
    */
-  protected function setFrom(DateTime $from) {
+  protected function setFrom(DateTime $from)
+  {
     $this->fromDate = $from;
   }
 
@@ -72,7 +75,8 @@ class PingdomApiRequest {
    *
    * @return void
    */
-  protected function setTo(DateTime $to = null) {
+  protected function setTo(DateTime $to = null)
+  {
     $this->toDate = $to;
   }
 
@@ -85,10 +89,14 @@ class PingdomApiRequest {
    *
    * @return void
    */
-  protected function setPageNumber($pageNumber) {
-    if (is_numeric($pageNumber)) {
+  protected function setPageNumber($pageNumber)
+  {
+    if (is_numeric($pageNumber))
+    {
       $this->pageNumber = intval($pageNumber);
-    } else {
+    }
+    else
+    {
       throw new PingdomApiInvalidArgumentException('The given page number is invalid.', 2);
     }
   }
@@ -102,10 +110,14 @@ class PingdomApiRequest {
    *
    * @return void
    */
-  protected function setResultsPerPage($resultsPerPage) {
-    if (is_numeric($resultsPerPage)) {
+  protected function setResultsPerPage($resultsPerPage)
+  {
+    if (is_numeric($resultsPerPage))
+    {
       $this->resultsPerPage = intval($resultsPerPage);
-    } else {
+    }
+    else
+    {
       throw new PingdomApiInvalidArgumentException('The given results per page value is invalid.', 3);
     }
   }

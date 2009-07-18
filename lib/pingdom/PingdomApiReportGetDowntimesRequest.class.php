@@ -14,6 +14,7 @@
  *
  * @see http://www.pingdom.com/services/api-documentation/class_GetDowntimesRequest
  */
-class PingdomApiReportGetDowntimesRequest extends PingdomApiRequest {
+class PingdomApiReportGetDowntimesRequest extends PingdomApiRequest
+{
 
 }

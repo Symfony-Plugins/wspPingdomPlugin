@@ -14,7 +14,8 @@
  *
  * @see http://www.pingdom.com/services/api-documentation/class_LastDownEntry
  */
-class PingdomApiReportLastDownEntry {
+class PingdomApiReportLastDownEntry
+{
   /**
    * The name of this entry.
    *
@@ -29,15 +30,22 @@ class PingdomApiReportLastDownEntry {
    */
   private $lastDown;
 
-  public function __construct(stdClass $lastDownEntry) {
-    if (isset($lastDownEntry->checkName)) {
+  public function __construct(stdClass $lastDownEntry)
+  {
+    if (isset($lastDownEntry->checkName))
+    {
       $this->checkName = $lastDownEntry->checkName;
-      if (isset($lastDownEntry->lastDown)) {
+      if (isset($lastDownEntry->lastDown))
+      {
         $this->lastDown = $lastDownEntry->lastDown;
-      } else {
+      }
+      else
+      {
         $this->lastDown = false;
       }
-    } else {
+    }
+    else
+    {
       throw new PingdomApiInvalidArgumentException('The given last down entry is invalid.', 4);
     }
   }
@@ -47,7 +55,8 @@ class PingdomApiReportLastDownEntry {
    *
    * @return string
    */
-  public function getCheckName() {
+  public function getCheckName()
+  {
     return $this->checkName;
   }
 
@@ -57,7 +66,8 @@ class PingdomApiReportLastDownEntry {
    *
    * @return datetime | false
    */
-  public function getLastDown() {
+  public function getLastDown()
+  {
     return $this->lastDown;
   }
 }

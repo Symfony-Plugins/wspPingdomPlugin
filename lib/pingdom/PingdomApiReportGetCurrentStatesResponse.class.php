@@ -14,7 +14,8 @@
  *
  * @see http://www.pingdom.com/services/api-documentation/class_GetCurrentStatesResponse
  */
-class PingdomApiReportGetCurrentStatesResponse extends PingdomApiResponse {
+class PingdomApiReportGetCurrentStatesResponse extends PingdomApiResponse
+{
   /**
    * Array of current check states.
    *
@@ -22,12 +23,16 @@ class PingdomApiReportGetCurrentStatesResponse extends PingdomApiResponse {
    */
   private $currentStates;
 
-  public function __construct(stdClass $apiResponse) {
+  public function __construct(stdClass $apiResponse)
+  {
     parent::__construct($apiResponse);
 
-    if (isset($apiResponse->currentStates)) {
+    if (isset($apiResponse->currentStates))
+    {
       $this->currentStates = $apiResponse->currentStates;
-    } else {
+    }
+    else
+    {
       throw new PingdomApiInvalidResponseException('The given response is no Report_GetCurrentStatesResponse.', 6);
     }
   }
@@ -37,7 +42,8 @@ class PingdomApiReportGetCurrentStatesResponse extends PingdomApiResponse {
    *
    * @return array
    */
-  public function getCurrentStates() {
+  public function getCurrentStates()
+  {
     return $this->currentStates;
   }
 }

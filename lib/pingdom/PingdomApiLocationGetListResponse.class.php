@@ -14,7 +14,8 @@
  *
  * @see http://www.pingdom.com/services/api-documentation/class_GetLocationsResponse
  */
-class PingdomApiLocationGetListResponse extends PingdomApiResponse {
+class PingdomApiLocationGetListResponse extends PingdomApiResponse
+{
   /**
    * Array of locations.
    *
@@ -22,12 +23,16 @@ class PingdomApiLocationGetListResponse extends PingdomApiResponse {
    */
   private $locations;
 
-  public function __construct(stdClass $apiResponse) {
+  public function __construct(stdClass $apiResponse)
+  {
     parent::__construct($apiResponse);
 
-    if (isset($apiResponse->locationsArray)) {
+    if (isset($apiResponse->locationsArray))
+    {
       $this->locations = $apiResponse->locationsArray;
-    } else {
+    }
+    else
+    {
       throw new PingdomApiInvalidResponseException('The given response is no Location_GetListResponse.', 5);
     }
   }
@@ -37,7 +42,8 @@ class PingdomApiLocationGetListResponse extends PingdomApiResponse {
    *
    * @return array
    */
-  public function getLocations() {
+  public function getLocations()
+  {
     return $this->locations;
   }
 }

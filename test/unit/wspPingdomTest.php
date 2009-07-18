@@ -32,10 +32,13 @@ $limeTest->is($pingdomApi->getClient()->getSessionId(), '', 'Session Id removed'
 $limeTest->is($pingdomApi->getClient()->getApiKey(), '', 'API key removed');
 
 # we are logged out, so this should not work
-try {
+try
+{
   $limeTest->is($pingdomApi->getClient()->getCheckList()->getStatus(), PingdomApiClient::STATUS_WRONG_IDENTIFICATION, 'API key check');
   $limeTest->fail('This point should not be reached.');
-} catch (PingdomApiException $e) {
+}
+catch (PingdomApiException $e)
+{
   $limeTest->isa_ok($e, 'PingdomApiInvalidResponseException', 'Exception caught');
 }
 
@@ -46,4 +49,8 @@ $limeTest->isa_ok($pingdomApi->getClient()->getCheckList()->getCheckNames(), 'ar
 $limeTest->isa_ok($pingdomApi->getClient()->getLocationList()->getLocations(), 'array', 'got list of locations');
 $limeTest->isa_ok($pingdomApi->getClient()->getCurrentReportStates()->getCurrentStates(), 'array', 'got list of current report states');
 
-var_dump($pingdomApi->getClient()->getLastDownsReport());
+$response = $pingdomApi->getClient()->getLastDownsReport();
+foreach ($response->getLastDowns() as $eachLastDown)
+{
+  $limeTest->isa_ok($eachLastDown, 'PingdomApiReportLastDownEntry', 'last down entry ok');
+}

@@ -14,7 +14,8 @@
  *
  * @see http://www.pingdom.com/services/api-documentation/class_EchoResponse
  */
-class PingdomApiCheckGetListResponse extends PingdomApiResponse {
+class PingdomApiCheckGetListResponse extends PingdomApiResponse
+{
   /**
    * Array of check names.
    *
@@ -22,12 +23,16 @@ class PingdomApiCheckGetListResponse extends PingdomApiResponse {
    */
   private $checkNames;
 
-  public function __construct(stdClass $apiResponse) {
+  public function __construct(stdClass $apiResponse)
+  {
     parent::__construct($apiResponse);
 
-    if (isset($apiResponse->checkNames)) {
+    if (isset($apiResponse->checkNames))
+    {
       $this->checkNames = $apiResponse->checkNames;
-    } else {
+    }
+    else
+    {
       throw new PingdomApiInvalidResponseException('The given response is no Check_GetListResponse.', 4);
     }
   }
@@ -37,7 +42,8 @@ class PingdomApiCheckGetListResponse extends PingdomApiResponse {
    *
    * @return array
    */
-  public function getCheckNames() {
+  public function getCheckNames()
+  {
     return $this->checkNames;
   }
 }

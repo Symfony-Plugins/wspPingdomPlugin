@@ -14,7 +14,8 @@
  *
  * @see http://www.pingdom.com/services/api-documentation/operation_getLastDowns
  */
-class PingdomApiReportGetLastDownsResponse extends PingdomApiResponse {
+class PingdomApiReportGetLastDownsResponse extends PingdomApiResponse
+{
   /**
    * Array of last downs.
    *
@@ -22,15 +23,20 @@ class PingdomApiReportGetLastDownsResponse extends PingdomApiResponse {
    */
   private $lastDowns;
 
-  public function __construct(stdClass $apiResponse) {
+  public function __construct(stdClass $apiResponse)
+  {
     parent::__construct($apiResponse);
 
-    if (isset($apiResponse->lastDowns)) {
+    if (isset($apiResponse->lastDowns))
+    {
       $this->lastDowns = array();
-      foreach ($apiResponse->lastDowns as $eachDownEntry) {
+      foreach ($apiResponse->lastDowns as $eachDownEntry)
+      {
         $this->lastDowns[] = new PingdomApiReportLastDownEntry($eachDownEntry);
       }
-    } else {
+    }
+    else
+    {
       throw new PingdomApiInvalidResponseException('The given response is no Report_getLastDowns.', 8);
     }
   }
@@ -40,7 +46,8 @@ class PingdomApiReportGetLastDownsResponse extends PingdomApiResponse {
    *
    * @return array
    */
-  public function getLastDowns() {
+  public function getLastDowns()
+  {
     return $this->lastDowns;
   }
 }

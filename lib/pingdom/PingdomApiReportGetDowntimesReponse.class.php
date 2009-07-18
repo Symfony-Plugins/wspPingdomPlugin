@@ -14,7 +14,8 @@
  *
  * @see http://www.pingdom.com/services/api-documentation/class_GetDowntimesResponse
  */
-class PingdomApiReportGetDowntimesResponse extends PingdomApiResponse {
+class PingdomApiReportGetDowntimesResponse extends PingdomApiResponse
+{
   /**
    * Array of downtime objects, where each contains downtime info for a particular period of time.
    *
@@ -22,12 +23,16 @@ class PingdomApiReportGetDowntimesResponse extends PingdomApiResponse {
    */
   private $downtimesArray;
 
-  public function __construct(stdClass $apiResponse) {
+  public function __construct(stdClass $apiResponse)
+  {
     parent::__construct($apiResponse);
 
-    if (isset($apiResponse->downtimesArray)) {
+    if (isset($apiResponse->downtimesArray))
+    {
       $this->downtimesArray = $apiResponse->downtimesArray;
-    } else {
+    }
+    else
+    {
       throw new PingdomApiInvalidResponseException('The given response is no Report_GetDowntimesResponse.', 7);
     }
   }
@@ -37,7 +42,8 @@ class PingdomApiReportGetDowntimesResponse extends PingdomApiResponse {
    *
    * @return array
    */
-  public function getDowntimes() {
+  public function getDowntimes()
+  {
     return $this->downtimesArray;
   }
 }
