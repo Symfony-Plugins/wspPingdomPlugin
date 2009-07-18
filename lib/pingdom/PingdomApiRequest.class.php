@@ -19,14 +19,14 @@ class PingdomApiRequest
   /**
    * Start of time period for notifications analysis.
    *
-   * @var datetime
+   * @var DateTime
    */
   protected $fromDate;
 
   /**
    * End of time period for notifications analysis.
    *
-   * @var datetime
+   * @var DateTime
    */
   protected $toDate;
 
@@ -45,25 +45,13 @@ class PingdomApiRequest
   protected $resultsPerPage;
 
   /**
-   * Set up the current Pingdom API Response.
-   */
-  public function __construct(DateTime $from = null, DateTime $to = null, $pageNumber = null, $resultsPerPage = null)
-  {
-
-    $this->toDate = $to;
-    $this->pageNumber = $pageNumber;
-    $this->resultsPerPage = $resultsPerPage;
-  }
-
-
-  /**
    * Set the date from which e.g. a report is retrieved.
    *
    * @param DateTime $from
    *
    * @return void
    */
-  protected function setFrom(DateTime $from)
+  public function setFrom(DateTime $from)
   {
     $this->fromDate = $from;
   }
@@ -75,9 +63,27 @@ class PingdomApiRequest
    *
    * @return void
    */
-  protected function setTo(DateTime $to = null)
+  public function setTo(DateTime $to = null)
   {
     $this->toDate = $to;
+  }
+
+  /**
+   * Get the from datetime.
+   *
+   * @return DateTime
+   */
+  public function getFrom() {
+    return $this->fromDate;
+  }
+
+  /**
+   * Get the to datetime.
+   *
+   * @return DateTime
+   */
+  public function getTo() {
+    return $this->toDate;
   }
 
   /**
@@ -89,7 +95,7 @@ class PingdomApiRequest
    *
    * @return void
    */
-  protected function setPageNumber($pageNumber)
+  public function setPageNumber($pageNumber)
   {
     if (is_numeric($pageNumber))
     {
@@ -110,7 +116,7 @@ class PingdomApiRequest
    *
    * @return void
    */
-  protected function setResultsPerPage($resultsPerPage)
+  public function setResultsPerPage($resultsPerPage)
   {
     if (is_numeric($resultsPerPage))
     {
@@ -120,5 +126,23 @@ class PingdomApiRequest
     {
       throw new PingdomApiInvalidArgumentException('The given results per page value is invalid.', 3);
     }
+  }
+
+  /**
+   * Get the page number.
+   *
+   * @return int
+   */
+  public function getPageNumber() {
+    return $this->pageNumber;
+  }
+
+  /**
+   * Get the results per page.
+   *
+   * @return int
+   */
+  public function getResultsPerPage() {
+    return $this->resultsPerPage;
   }
 }

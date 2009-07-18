@@ -54,3 +54,12 @@ foreach ($response->getLastDowns() as $eachLastDown)
 {
   $limeTest->isa_ok($eachLastDown, 'PingdomApiReportLastDownEntry', 'last down entry ok');
 }
+
+$downtimeRequest = new PingdomApiReportGetDowntimesRequest();
+$dateTimeZone = new DateTimeZone('Europe/Berlin');
+$downtimeRequest->setFrom(new DateTime('-1 week', $dateTimeZone));
+$downtimeRequest->setTo(new DateTime('now', new DateTimeZone('Europe/Berlin')));
+$downtimeRequest->setCheckName(PingdomApi::CHECK_NAME);
+$downtimeRequest->setResolution(PingdomApiReportResolutionEnum::DAILY);
+
+$limeTest->is($pingdomApi->getClient()->getDowntimesReport($downtimeRequest)->getStatus(), PingdomApiClient::STATUS_OK, 'got downtime report');

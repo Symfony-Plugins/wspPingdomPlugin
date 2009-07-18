@@ -162,17 +162,54 @@ class PingdomApiClient
    * Call a method on the soap client with api key and session id.
    *
    * @param string $method
+   * @param PingdomApiRequest $request
    *
    * @return stdClass
    */
-  protected function callSoapClient($method)
+  protected function callSoapClient($method, PingdomApiRequest $request = null)
   {
     if (!$method)
     {
       throw new PingdomApiException('Invalid method given.', 1);
     }
 
-    return $this->soap->{$method}($this->getApiKey(), $this->getSessionId());
+    # initialize the request for the soap client
+    if ($request)
+    {
+      # we use the reflector to get all available getter methods
+      $reflector = new ReflectionObject($request);
+      $obj = new stdClass();
+
+      /* @var $eachMethod ReflectionMethod */
+      foreach ($reflector->getMethods(ReflectionMethod::IS_PUBLIC) as $eachMethod)
+      {
+        # retrieve the attributes name
+        $attr = '';
+        if (preg_match('/^get(.*)$/', $eachMethod->getName(), $attr))
+        {
+          $attr = strtolower(substr($attr[1], 0, 1)) . substr($attr[1], 1);
+
+          if (!is_null($request->{$eachMethod->getName()}()))
+          {
+            # set the attribute for soap client
+            $value = $request->{$eachMethod->getName()}();
+
+            if ($value instanceof DateTime)
+            {
+              $value = $value->format(DateTime::W3C);
+            }
+
+            $obj->{$attr} = $value;
+          }
+        }
+      }
+
+      return $this->soap->{$method}($this->getApiKey(), $this->getSessionId(), $obj);
+    }
+    else
+    {
+      return $this->soap->{$method}($this->getApiKey(), $this->getSessionId());
+    }
   }
 
   /**
@@ -280,7 +317,7 @@ class PingdomApiClient
    */
   public function getDowntimesReport(PingdomApiReportGetDownTimesRequest $request)
   {
-    return new PingdomApiReportGetDowntimesReponse($this->callSoapClient('Report_getDowntimes', $request));
+    return new PingdomApiReportGetDowntimesResponse($this->callSoapClient('Report_getDowntimes', $request));
   }
 
   /**

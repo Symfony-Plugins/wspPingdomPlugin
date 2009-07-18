@@ -16,5 +16,68 @@
  */
 class PingdomApiReportGetDowntimesRequest extends PingdomApiRequest
 {
+  /**
+   * Name of the check for downtime analysis.
+   *
+   * @var string
+   */
+  private $checkName;
 
+  /**
+   * Resolution for downtime analysis.
+   *
+   * @var string
+   */
+  private $resolution;
+
+  /**
+   * Set the check for downtime request.
+   *
+   * @param string $name
+   *
+   * @return void
+   */
+  public function setCheckName($name)
+  {
+    if (!$name)
+    {
+      throw new PingdomApiInvalidArgumentException('The given check name is invalid.', 5);
+    }
+    $this->checkName = $name;
+  }
+
+  /**
+   * Set the resolution for downtime request.
+   *
+   * @param string $resolution
+   *
+   * @return void
+   */
+  public function setResolution($resolution)
+  {
+    if (!in_array($resolution, PingdomApiReportResolutionEnum::getEnum()))
+    {
+      throw new PingdomApiInvalidArgumentException('The given resolution is invalid.', 6);
+    }
+    $this->resolution = $resolution;
+  }
+
+  /**
+   * Get the check name.
+   *
+   * @return string
+   */
+  public function getCheckName()
+  {
+    return $this->checkName;
+  }
+
+  /**
+   * Get the resolution.
+   *
+   * @return string
+   */
+  public function getResolution() {
+    return $this->resolution;
+  }
 }
