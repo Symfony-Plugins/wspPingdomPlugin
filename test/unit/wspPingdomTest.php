@@ -49,7 +49,18 @@ $pingdomApi->login();
 
 $limeTest->isa_ok($pingdomApi->getClient()->getCheckList()->getCheckNames(), 'array', 'got list of checks');
 $limeTest->isa_ok($pingdomApi->getClient()->getLocationList()->getLocations(), 'array', 'got list of locations');
-$limeTest->isa_ok($pingdomApi->getClient()->getCurrentReportStates()->getCurrentStates(), 'array', 'got list of current report states');
+
+
+
+$response = $pingdomApi->getClient()->getCurrentReportStates();
+$limeTest->isa_ok($response, 'PingdomApiReportGetCurrentStatesResponse', 'current states response ok');
+foreach ($response->getCurrentStates() as $eachCurrentState)
+{
+	/* @var $eachCurrentState PingdomApiReportCheckStateEntry */
+	$limeTest->isa_ok($eachCurrentState, 'PingdomApiReportCheckStateEntry', 'check state entry ok');
+}
+
+
 
 $response = $pingdomApi->getClient()->getLastDownsReport();
 
@@ -61,10 +72,14 @@ foreach ($response->getLastDowns() as $eachLastDown)
   $limeTest->is(true, (($eachLastDown->getLastDown() instanceof DateTime) || ($eachLastDown->getLastDown() === false)), 'last down value ok');
 }
 
+
+
 # set up some DateTime parameters
 $dateTimeZone = new DateTimeZone('Europe/Berlin');
 $fromDate = new DateTime('-1 week', $dateTimeZone);
 $toDate = new DateTime('now', $dateTimeZone);
+
+
 
 $downtimeRequest = new PingdomApiReportGetDowntimesRequest();
 $downtimeRequest->setFrom($fromDate);
@@ -74,6 +89,8 @@ $downtimeRequest->setResolution(PingdomApiReportResolutionEnum::DAILY);
 $response = $pingdomApi->getClient()->getDowntimesReport($downtimeRequest);
 
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got downtime report');
+
+
 
 $notificationRequest = new PingdomApiReportGetNotificationsRequest();
 $notificationRequest->setFrom($fromDate);
@@ -89,6 +106,8 @@ foreach ($response->getNotifications() as $eachNotification)
 	$limeTest->isa_ok($eachNotification, 'PingdomApiReportGetNotificationsResponseItem', 'notification item ok');
 }
 
+
+
 $outagesRequest = new PingdomApiReportGetOutagesRequest();
 $outagesRequest->setCheckName($pingdomApi->getCheckName());
 $outagesRequest->setFrom($fromDate);
@@ -103,6 +122,8 @@ foreach ($response->getOutages() as $eachOutage)
 	$limeTest->isa_ok($eachOutage, 'PingdomApiReportOutageEntry', 'outage entry ok');
 }
 
+
+
 $rawdataRequest = new PingdomApiReportGetRawDataRequest();
 $rawdataRequest->setCheckName($pingdomApi->getCheckName());
 $rawdataRequest->setFrom($fromDate);
@@ -116,6 +137,8 @@ foreach ($response->getRawData() as $eachRawData)
   /* @var $eachRawData PingdomApiReportRawDataEntry */
   $limeTest->isa_ok($eachRawData, 'PingdomApiReportRawDataEntry', 'raw data entry ok');
 }
+
+
 
 $responsetimeRequest = new PingdomApiReportGetResponseTimesRequest();
 $responsetimeRequest->setCheckName($pingdomApi->getCheckName());

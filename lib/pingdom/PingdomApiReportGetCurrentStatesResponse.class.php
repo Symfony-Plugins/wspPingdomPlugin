@@ -29,7 +29,11 @@ class PingdomApiReportGetCurrentStatesResponse extends PingdomApiResponse
 
     if (isset($apiResponse->currentStates))
     {
-      $this->currentStates = $apiResponse->currentStates;
+      $this->currentStates = array();
+      foreach ($apiResponse->currentStates as $eachCurrentState)
+      {
+      	$this->currentStates[] = new PingdomApiReportCheckStateEntry($eachCurrentState);
+      }
     }
     else
     {
@@ -38,9 +42,9 @@ class PingdomApiReportGetCurrentStatesResponse extends PingdomApiResponse
   }
 
   /**
-   * Get the current report stats.
+   * Get the current report states.
    *
-   * @return array
+   * @return array of PingdomApiReportCheckStateEntry
    */
   public function getCurrentStates()
   {
