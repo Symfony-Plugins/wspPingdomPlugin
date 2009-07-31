@@ -35,14 +35,14 @@ class PingdomApiRequest
    *
    * @var int
    */
-  protected $pageNumber;
+  protected $pageNumber = 1;
 
   /**
    * Number of results per page for notifications analysis.
    *
    * @var int defaults to 25
    */
-  protected $resultsPerPage;
+  protected $resultsPerPage = 25;
 
   /**
    * Set the date from which e.g. a report is retrieved.
