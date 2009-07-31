@@ -77,7 +77,7 @@ $notificationRequest = new PingdomApiReportGetNotificationsRequest();
 $notificationRequest->setFrom($fromDate);
 $notificationRequest->setTo($toDate);
 $notificationRequest->setStatus(array(PingdomApiReportStatusEnum::SENT));
-$response = $pingdomApi->getClient()->getNotifications($notificationRequest);
+$response = $pingdomApi->getClient()->getNotificationsReport($notificationRequest);
 $limeTest->isa_ok($response, 'PingdomApiReportGetNotificationsResponse', 'notification response ok');
 
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got notification report');
