@@ -365,4 +365,16 @@ class PingdomApiClient
   {
     return new PingdomApiReportGetRawDataResponse($this->callSoapClient('Report_getRawData', $request));
   }
+
+  /**
+   * Returns response times summary for current user.
+   *
+   * @param PingdomApiReportGetResponseTimesRequest $request
+   *
+   * @return PingdomApiReportGetResponseTimesResponse
+   */
+  public function getResponseTimesReport(PingdomApiReportGetResponseTimesRequest $request)
+  {
+    return new PingdomApiReportGetResponseTimesResponse($this->callSoapClient('Report_getResponseTimes', $request));
+  }
 }

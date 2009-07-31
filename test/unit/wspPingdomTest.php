@@ -116,3 +116,18 @@ foreach ($response->getRawData() as $eachRawData)
   /* @var $eachRawData PingdomApiReportRawDataEntry */
   $limeTest->isa_ok($eachRawData, 'PingdomApiReportRawDataEntry', 'raw data entry ok');
 }
+
+$responsetimeRequest = new PingdomApiReportGetResponseTimesRequest();
+$responsetimeRequest->setCheckName($pingdomApi->getCheckName());
+$responsetimeRequest->setFrom($fromDate);
+$responsetimeRequest->setTo($toDate);
+$responsetimeRequest->setResolution(PingdomApiReportResolutionEnum::DAILY);
+$response = $pingdomApi->getClient()->getResponseTimesReport($responsetimeRequest);
+
+$limeTest->isa_ok($response, 'PingdomApiReportGetResponseTimesResponse', 'response times response ok');
+$limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got response times report');
+foreach ($response->getResponseTimes() as $eachResponseTimeEntry)
+{
+	/* @var $eachResponseTimeEntry PingdomApiReportResponseTimeEntry */
+	$limeTest->isa_ok($eachResponseTimeEntry, 'PingdomApiReportResponseTimeEntry', 'response time entry ok');
+}
