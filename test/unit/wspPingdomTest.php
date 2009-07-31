@@ -11,7 +11,8 @@
 
 require_once(dirname(__FILE__) . '/../bootstrap/unit.php');
 
-$limeTest = new lime_test(20, new lime_output_color());
+$plannedTests = 22;
+$limeTest = new lime_test($plannedTests, new lime_output_color());
 
 sfContext::createInstance(ProjectConfiguration::getApplicationConfiguration('mkt', 'test', true));
 
@@ -54,6 +55,7 @@ $limeTest->isa_ok($pingdomApi->getClient()->getLocationList()->getLocations(), '
 
 $response = $pingdomApi->getClient()->getCurrentReportStates();
 $limeTest->isa_ok($response, 'PingdomApiReportGetCurrentStatesResponse', 'current states response ok');
+$limeTest->plan += count($response->getCurrentStates());
 foreach ($response->getCurrentStates() as $eachCurrentState)
 {
 	/* @var $eachCurrentState PingdomApiReportCheckStateEntry */
@@ -65,6 +67,7 @@ foreach ($response->getCurrentStates() as $eachCurrentState)
 $response = $pingdomApi->getClient()->getLastDownsReport();
 
 $limeTest->isa_ok($response, 'PingdomApiReportGetLastDownsResponse', 'last donws response ok');
+$limeTest->plan += count($response->getLastDowns()) * 2;
 foreach ($response->getLastDowns() as $eachLastDown)
 {
   /* @var $eachLastDown PingdomApiReportLastDownEntry */
@@ -100,6 +103,7 @@ $response = $pingdomApi->getClient()->getNotificationsReport($notificationReques
 
 $limeTest->isa_ok($response, 'PingdomApiReportGetNotificationsResponse', 'notification response ok');
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got notification report');
+$limeTest->plan += count($response->getNotifications());
 foreach ($response->getNotifications() as $eachNotification)
 {
 	/* @var $eachNotification PingdomApiReportGetNotificationsResponseItem */
@@ -116,6 +120,7 @@ $response = $pingdomApi->getClient()->getOutagesReport($outagesRequest);
 
 $limeTest->isa_ok($response, 'PingdomApiReportGetOutagesResponse', 'outages response ok');
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got outages report');
+$limeTest->plan += count($response->getOutages());
 foreach ($response->getOutages() as $eachOutage)
 {
 	/* @var $eachOutage PingdomApiReportOutageEntry */
@@ -132,6 +137,7 @@ $response = $pingdomApi->getClient()->getRawDataReport($rawdataRequest);
 
 $limeTest->isa_ok($response, 'PingdomApiReportGetRawDataResponse', 'raw data response ok');
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got raw data report');
+$limeTest->plan += count($response->getRawData());
 foreach ($response->getRawData() as $eachRawData)
 {
   /* @var $eachRawData PingdomApiReportRawDataEntry */
@@ -149,6 +155,7 @@ $response = $pingdomApi->getClient()->getResponseTimesReport($responsetimeReques
 
 $limeTest->isa_ok($response, 'PingdomApiReportGetResponseTimesResponse', 'response times response ok');
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got response times report');
+$limeTest->plan += count($response->getResponseTimes());
 foreach ($response->getResponseTimes() as $eachResponseTimeEntry)
 {
 	/* @var $eachResponseTimeEntry PingdomApiReportResponseTimeEntry */
