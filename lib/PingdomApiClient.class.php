@@ -341,4 +341,16 @@ class PingdomApiClient
   {
     return new PingdomApiReportGetNotificationsResponse($this->callSoapClient('Report_getNotifications', $request));
   }
+
+  /**
+   * Returns outages in a given period for current user.
+   *
+   * @param PingdomApiReportGetOutagesRequest $request
+   *
+   * @return PingdomApiReportGetOutagesResponse
+   */
+  public function getOutagesReport(PingdomApiReportGetOutagesRequest $request)
+  {
+    return new PingdomApiReportGetOutagesResponse($this->callSoapClient('Report_getOutages', $request));
+  }
 }

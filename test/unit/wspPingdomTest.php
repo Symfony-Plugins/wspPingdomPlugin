@@ -15,6 +15,8 @@ $limeTest = new lime_test(20, new lime_output_color());
 
 sfContext::createInstance(ProjectConfiguration::getApplicationConfiguration('mkt', 'test', true));
 
+$checkName = 'havvgs life';
+
 $pingdomApiClient = new PingdomApiClient();
 $limeTest->isa_ok($pingdomApiClient, 'PingdomApiClient', 'PingdomApiClient created');
 
@@ -85,4 +87,18 @@ foreach ($response->getNotifications() as $eachNotification)
 {
 	/* @var $eachNotification PingdomApiReportGetNotificationsResponseItem */
 	$limeTest->isa_ok($eachNotification, 'PingdomApiReportGetNotificationsResponseItem', 'notification item ok');
+}
+
+$outagesRequest = new PingdomApiReportGetOutagesRequest();
+$outagesRequest->setCheckName($checkName);
+$outagesRequest->setFrom($fromDate);
+$outagesRequest->setTo($toDate);
+$response = $pingdomApi->getClient()->getOutagesReport($outagesRequest);
+$limeTest->isa_ok($response, 'PingdomApiReportGetOutagesResponse', 'outages response ok');
+
+$limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got outages report');
+foreach ($response->getOutages() as $eachOutage)
+{
+	/* @var $eachOutage PingdomApiReportOutageEntry */
+	$limeTest->isa_ok($eachOutage, 'PingdomApiReportOutageEntry', 'outage entry ok');
 }
