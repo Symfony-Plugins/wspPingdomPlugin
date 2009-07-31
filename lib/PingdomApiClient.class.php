@@ -353,4 +353,16 @@ class PingdomApiClient
   {
     return new PingdomApiReportGetOutagesResponse($this->callSoapClient('Report_getOutages', $request));
   }
+
+  /**
+   * Returns raw data for a check.
+   *
+   * @param PingdomApiReportGetRawDataRequest $request
+   *
+   * @return PingdomApiReportGetRawDataResponse
+   */
+  public function getRawDataReport(PingdomApiReportGetRawDataRequest $request)
+  {
+    return new PingdomApiReportGetRawDataResponse($this->callSoapClient('Report_getRawData', $request));
+  }
 }
