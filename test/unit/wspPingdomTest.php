@@ -54,7 +54,9 @@ $limeTest->isa_ok($pingdomApi->getClient()->getCurrentReportStates()->getCurrent
 $response = $pingdomApi->getClient()->getLastDownsReport();
 foreach ($response->getLastDowns() as $eachLastDown)
 {
+  /* @var $eachLastDown PingdomApiReportLastDownEntry */
   $limeTest->isa_ok($eachLastDown, 'PingdomApiReportLastDownEntry', 'last down entry ok');
+  $limeTest->is(true, (($eachLastDown->getLastDown() instanceof DateTime) || ($eachLastDown->getLastDown() === false)), 'last down value ok');
 }
 
 $downtimeRequest = new PingdomApiReportGetDowntimesRequest();

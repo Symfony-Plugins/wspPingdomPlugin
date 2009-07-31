@@ -26,7 +26,7 @@ class PingdomApiReportLastDownEntry
   /**
    * The datetime of the last down of this entry.
    *
-   * @var datetime | false
+   * @var DateTime | false
    */
   private $lastDown;
 
@@ -37,7 +37,7 @@ class PingdomApiReportLastDownEntry
       $this->checkName = $lastDownEntry->checkName;
       if (isset($lastDownEntry->lastDown))
       {
-        $this->lastDown = $lastDownEntry->lastDown;
+        $this->lastDown = new DateTime($lastDownEntry->lastDown);
       }
       else
       {
@@ -64,7 +64,7 @@ class PingdomApiReportLastDownEntry
    * Get the datetim of the last down.
    * Returns false, if this check was never down.
    *
-   * @return datetime | false
+   * @return DateTime | false
    */
   public function getLastDown()
   {
