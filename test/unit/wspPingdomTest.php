@@ -52,6 +52,7 @@ $limeTest->isa_ok($pingdomApi->getClient()->getLocationList()->getLocations(), '
 $limeTest->isa_ok($pingdomApi->getClient()->getCurrentReportStates()->getCurrentStates(), 'array', 'got list of current report states');
 
 $response = $pingdomApi->getClient()->getLastDownsReport();
+$limeTest->isa_ok($response, 'PingdomApiReportGetLastDownsResponse', 'last donws response ok');
 foreach ($response->getLastDowns() as $eachLastDown)
 {
   /* @var $eachLastDown PingdomApiReportLastDownEntry */
@@ -59,11 +60,29 @@ foreach ($response->getLastDowns() as $eachLastDown)
   $limeTest->is(true, (($eachLastDown->getLastDown() instanceof DateTime) || ($eachLastDown->getLastDown() === false)), 'last down value ok');
 }
 
-$downtimeRequest = new PingdomApiReportGetDowntimesRequest();
+# set up some DateTime parameters
 $dateTimeZone = new DateTimeZone('Europe/Berlin');
-$downtimeRequest->setFrom(new DateTime('-1 week', $dateTimeZone));
-$downtimeRequest->setTo(new DateTime('now', new DateTimeZone('Europe/Berlin')));
+$fromDate = new DateTime('-1 week', $dateTimeZone);
+$toDate = new DateTime('now', $dateTimeZone);
+
+$downtimeRequest = new PingdomApiReportGetDowntimesRequest();
+$downtimeRequest->setFrom($fromDate);
+$downtimeRequest->setTo($toDate);
 $downtimeRequest->setCheckName($pingdomApi->getCheckName());
 $downtimeRequest->setResolution(PingdomApiReportResolutionEnum::DAILY);
 
 $limeTest->is($pingdomApi->getClient()->getDowntimesReport($downtimeRequest)->getStatus(), PingdomApiClient::STATUS_OK, 'got downtime report');
+
+$notificationRequest = new PingdomApiReportGetNotificationsRequest();
+$notificationRequest->setFrom($fromDate);
+$notificationRequest->setTo($toDate);
+$notificationRequest->setStatus(array(PingdomApiReportStatusEnum::SENT));
+$response = $pingdomApi->getClient()->getNotifications($notificationRequest);
+$limeTest->isa_ok($response, 'PingdomApiReportGetNotificationsResponse', 'notification response ok');
+
+$limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got notification report');
+foreach ($response->getNotifications() as $eachNotification)
+{
+	/* @var $eachNotification PingdomApiReportGetNotificationsResponseItem */
+	$limeTest->isa_ok($eachNotification, 'PingdomApiReportGetNotificationsResponseItem', 'notification item ok');
+}

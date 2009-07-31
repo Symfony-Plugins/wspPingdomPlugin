@@ -329,4 +329,16 @@ class PingdomApiClient
   {
     return new PingdomApiReportGetLastDownsResponse($this->callSoapClient('Report_getLastDowns'));
   }
+
+  /**
+   * Returns the latest notifications.
+   *
+   * @param PingdomApiReportGetNotificationsRequest $request
+   *
+   * @return PingdomApiReportGetNotificationsResponse
+   */
+  public function getNotificationsReport(PingdomApiReportGetNotificationsRequest $request)
+  {
+    return new PingdomApiReportGetNotificationsResponse($this->callSoapClient('Report_getNotifications', $request));
+  }
 }
