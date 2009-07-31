@@ -53,7 +53,7 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
    *
    * @param array $names
    *
-   * @return void
+   * @return PingdomApiReportGetNotificationsRequest this
    */
   public function setCheckNames(array $names)
   {
@@ -63,6 +63,8 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
     }
 
     $this->checkNames = $names;
+
+    return $this;
   }
 
   /**
@@ -70,7 +72,7 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
    *
    * @param array $contacts
    *
-   * @return void
+   * @return PingdomApiReportGetNotificationsRequest this
    */
   public function setContacts(array $contacts)
   {
@@ -80,6 +82,8 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
     }
 
     $this->contacts = $contacts;
+
+    return $this;
   }
 
   /**
@@ -87,7 +91,7 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
    *
    * @param array $status
    *
-   * @return void
+   * @return PingdomApiReportGetNotificationsRequest this
    */
   public function setStatus(array $status)
   {
@@ -100,6 +104,8 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
     }
 
     $this->status = $status;
+
+    return $this;
   }
 
   /**
@@ -107,7 +113,7 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
    *
    * @param array $via
    *
-   * @return void
+   * @return PingdomApiReportGetNotificationsRequest this
    */
   public function setVia(array $via)
   {
@@ -120,6 +126,8 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
     }
 
     $this->via = $via;
+
+    return $this;
   }
 
   /**

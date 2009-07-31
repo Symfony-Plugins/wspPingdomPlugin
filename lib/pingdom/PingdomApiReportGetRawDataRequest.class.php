@@ -28,15 +28,18 @@ class PingdomApiReportGetRawDataRequest extends PingdomApiRequest
    *
    * @param string $name
    *
-   * @return void
+   * @return PingdomApiReportGetRawDataRequest this
    */
   public function setCheckName($name)
   {
     if (!$name)
     {
-      throw new PingdomApiInvalidArgumentException('The given check name is invalid.', 10);
+      throw new PingdomApiInvalidArgumentException('The given check name is invalid.', 12);
     }
+
     $this->checkName = $name;
+
+    return $this;
   }
 
   /**

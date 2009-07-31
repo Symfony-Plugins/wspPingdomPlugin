@@ -49,11 +49,13 @@ class PingdomApiRequest
    *
    * @param DateTime $from
    *
-   * @return void
+   * @return PingdomApiRequest this
    */
   public function setFrom(DateTime $from)
   {
     $this->fromDate = $from;
+
+    return $this;
   }
 
   /**
@@ -61,11 +63,13 @@ class PingdomApiRequest
    *
    * @param DateTime $to
    *
-   * @return void
+   * @return PingdomApiRequest this
    */
   public function setTo(DateTime $to = null)
   {
     $this->toDate = $to;
+
+    return $this;
   }
 
   /**
@@ -93,13 +97,15 @@ class PingdomApiRequest
    *
    * @param int $pageNumber
    *
-   * @return void
+   * @return PingdomApiRequest this
    */
   public function setPageNumber($pageNumber)
   {
     if (is_numeric($pageNumber))
     {
       $this->pageNumber = intval($pageNumber);
+
+      return $this;
     }
     else
     {
@@ -114,13 +120,15 @@ class PingdomApiRequest
    *
    * @param int $resultsPerPage
    *
-   * @return void
+   * @return PingdomApiRequest this
    */
   public function setResultsPerPage($resultsPerPage)
   {
     if (is_numeric($resultsPerPage))
     {
       $this->resultsPerPage = intval($resultsPerPage);
+
+      return $this;
     }
     else
     {

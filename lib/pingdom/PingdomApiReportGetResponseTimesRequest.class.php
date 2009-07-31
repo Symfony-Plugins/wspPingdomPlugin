@@ -42,7 +42,7 @@ class PingdomApiReportGetResponseTimesRequest extends PingdomApiRequest
    *
    * @param string $name
    *
-   * @return void
+   * @return PingdomApiReportGetResponseTimesRequest this
    */
   public function setCheckName($name)
   {
@@ -50,7 +50,10 @@ class PingdomApiReportGetResponseTimesRequest extends PingdomApiRequest
     {
       throw new PingdomApiInvalidArgumentException('The given check name is invalid.', 14);
     }
+
     $this->checkName = $name;
+
+    return $this;
   }
 
   /**
@@ -58,7 +61,7 @@ class PingdomApiReportGetResponseTimesRequest extends PingdomApiRequest
    *
    * @param string $resolution
    *
-   * @return void
+   * @return PingdomApiReportGetResponseTimesRequest this
    */
   public function setResolution($resolution)
   {
@@ -66,7 +69,10 @@ class PingdomApiReportGetResponseTimesRequest extends PingdomApiRequest
     {
       throw new PingdomApiInvalidArgumentException('The given resolution is invalid.', 15);
     }
+
     $this->resolution = $resolution;
+
+    return $this;
   }
 
   /**

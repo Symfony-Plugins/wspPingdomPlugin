@@ -46,13 +46,15 @@ class PingdomApiResponse
    *
    * @param int $status
    *
-   * @return void
+   * @return PingdomApiResponse this
    */
   protected final function setStatus($status)
   {
     if (is_numeric($status))
     {
       $this->status = intval($status);
+
+      return $this;
     }
     else
      {

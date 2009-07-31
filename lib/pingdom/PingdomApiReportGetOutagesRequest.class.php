@@ -28,7 +28,7 @@ class PingdomApiReportGetOutagesRequest extends PingdomApiRequest
    *
    * @param string $name
    *
-   * @return void
+   * @return PingdomApiReportGetOutagesRequest this
    */
   public function setCheckName($name)
   {
@@ -36,7 +36,10 @@ class PingdomApiReportGetOutagesRequest extends PingdomApiRequest
     {
       throw new PingdomApiInvalidArgumentException('The given check name is invalid.', 10);
     }
+
     $this->checkName = $name;
+
+    return $this;
   }
 
   /**

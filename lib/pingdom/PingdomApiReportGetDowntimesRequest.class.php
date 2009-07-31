@@ -35,7 +35,7 @@ class PingdomApiReportGetDowntimesRequest extends PingdomApiRequest
    *
    * @param string $name
    *
-   * @return void
+   * @return PingdomApiReportGetDowntimesRequest this
    */
   public function setCheckName($name)
   {
@@ -43,7 +43,10 @@ class PingdomApiReportGetDowntimesRequest extends PingdomApiRequest
     {
       throw new PingdomApiInvalidArgumentException('The given check name is invalid.', 5);
     }
+
     $this->checkName = $name;
+
+    return $this;
   }
 
   /**
@@ -51,7 +54,7 @@ class PingdomApiReportGetDowntimesRequest extends PingdomApiRequest
    *
    * @param string $resolution
    *
-   * @return void
+   * @return PingdomApiReportGetDowntimesRequest this
    */
   public function setResolution($resolution)
   {
@@ -59,7 +62,10 @@ class PingdomApiReportGetDowntimesRequest extends PingdomApiRequest
     {
       throw new PingdomApiInvalidArgumentException('The given resolution is invalid.', 6);
     }
+
     $this->resolution = $resolution;
+
+    return $this;
   }
 
   /**
