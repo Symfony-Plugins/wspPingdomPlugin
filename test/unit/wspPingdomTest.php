@@ -3,7 +3,7 @@
  * @author        Toni Uebernickel <toni@uebernickel.info>
  * @link          http://toni.uebernickel.info/
  *
- * @package       wspPingdom
+ * @package       wspPingdomPlugin
  * @subpackage    unit.test
  * @version       $Id$
  * @link          $HeadURL$
@@ -53,7 +53,7 @@ $limeTest->isa_ok($pingdomApi->getClient()->getLocationList()->getLocations(), '
 
 
 
-$response = $pingdomApi->getClient()->getCurrentReportStates();
+$response = $pingdomApi->getClient()->getCurrentStates();
 $limeTest->isa_ok($response, 'PingdomApiReportGetCurrentStatesResponse', 'current states response ok');
 $limeTest->plan += count($response->getCurrentStates());
 foreach ($response->getCurrentStates() as $eachCurrentState)
@@ -64,7 +64,7 @@ foreach ($response->getCurrentStates() as $eachCurrentState)
 
 
 
-$response = $pingdomApi->getClient()->getLastDownsReport();
+$response = $pingdomApi->getClient()->getLastDowns();
 
 $limeTest->isa_ok($response, 'PingdomApiReportGetLastDownsResponse', 'last donws response ok');
 $limeTest->plan += count($response->getLastDowns()) * 2;
@@ -89,7 +89,7 @@ $downtimeRequest->setFrom($fromDate);
 $downtimeRequest->setTo($toDate);
 $downtimeRequest->setCheckName($pingdomApi->getCheckName());
 $downtimeRequest->setResolution(PingdomApiReportResolutionEnum::DAILY);
-$response = $pingdomApi->getClient()->getDowntimesReport($downtimeRequest);
+$response = $pingdomApi->getClient()->getDowntimes($downtimeRequest);
 
 $limeTest->isa_ok($response, 'PingdomApiReportGetDowntimesResponse', 'notification response ok');
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got downtime report');
@@ -105,7 +105,7 @@ $notificationRequest = new PingdomApiReportGetNotificationsRequest();
 $notificationRequest->setFrom($fromDate);
 $notificationRequest->setTo($toDate);
 $notificationRequest->setStatus(array(PingdomApiReportStatusEnum::SENT));
-$response = $pingdomApi->getClient()->getNotificationsReport($notificationRequest);
+$response = $pingdomApi->getClient()->getNotifications($notificationRequest);
 
 $limeTest->isa_ok($response, 'PingdomApiReportGetNotificationsResponse', 'notification response ok');
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got notification report');
@@ -122,7 +122,7 @@ $outagesRequest = new PingdomApiReportGetOutagesRequest();
 $outagesRequest->setCheckName($pingdomApi->getCheckName());
 $outagesRequest->setFrom($fromDate);
 $outagesRequest->setTo($toDate);
-$response = $pingdomApi->getClient()->getOutagesReport($outagesRequest);
+$response = $pingdomApi->getClient()->getOutages($outagesRequest);
 
 $limeTest->isa_ok($response, 'PingdomApiReportGetOutagesResponse', 'outages response ok');
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got outages report');
@@ -139,7 +139,7 @@ $rawdataRequest = new PingdomApiReportGetRawDataRequest();
 $rawdataRequest->setCheckName($pingdomApi->getCheckName());
 $rawdataRequest->setFrom($fromDate);
 $rawdataRequest->setTo($toDate);
-$response = $pingdomApi->getClient()->getRawDataReport($rawdataRequest);
+$response = $pingdomApi->getClient()->getRawData($rawdataRequest);
 
 $limeTest->isa_ok($response, 'PingdomApiReportGetRawDataResponse', 'raw data response ok');
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got raw data report');
@@ -157,7 +157,7 @@ $responsetimeRequest->setCheckName($pingdomApi->getCheckName());
 $responsetimeRequest->setFrom($fromDate);
 $responsetimeRequest->setTo($toDate);
 $responsetimeRequest->setResolution(PingdomApiReportResolutionEnum::DAILY);
-$response = $pingdomApi->getClient()->getResponseTimesReport($responsetimeRequest);
+$response = $pingdomApi->getClient()->getResponseTimes($responsetimeRequest);
 
 $limeTest->isa_ok($response, 'PingdomApiReportGetResponseTimesResponse', 'response times response ok');
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got response times report');
