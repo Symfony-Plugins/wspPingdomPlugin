@@ -318,9 +318,19 @@ class PingdomApiClient
    *
    * @return PingdomApiReportGetCurrentStatesResponse
    */
-  public function getCurrentReportStates()
+  public function getCurrentStates()
   {
     return new PingdomApiReportGetCurrentStatesResponse($this->callSoapClient('Report_getCurrentStates'));
+  }
+
+  /**
+   * @deprecated
+   *
+   * @return PingdomApiReportGetCurrentStatesResponse
+   */
+  public function getCurrentReportStates()
+  {
+    return $this->getCurrentStates();
   }
 
   /**
@@ -332,9 +342,21 @@ class PingdomApiClient
    *
    * @return PingdomApiReportGetDowntimesResponse
    */
-  public function getDowntimesReport(PingdomApiReportGetDownTimesRequest $request)
+  public function getDowntimes(PingdomApiReportGetDownTimesRequest $request)
   {
     return new PingdomApiReportGetDowntimesResponse($this->callSoapClient('Report_getDowntimes', $request));
+  }
+
+  /**
+   * @deprecated
+   *
+   * @param PingdomApiReportGetDownTimesRequest $request
+   *
+   * @return PingdomApiReportGetDowntimesResponse
+   */
+  public function getDowntimesReport(PingdomApiReportGetDownTimesRequest $request)
+  {
+    return $this->getDowntimes($request);
   }
 
   /**
@@ -344,9 +366,19 @@ class PingdomApiClient
    *
    * @return PingdomApiReportGetLastDownsResponse
    */
-  public function getLastDownsReport()
+  public function getLastDowns()
   {
     return new PingdomApiReportGetLastDownsResponse($this->callSoapClient('Report_getLastDowns'));
+  }
+
+  /**
+   * @deprecated
+   *
+   * @return PingdomApiReportGetLastDownsResponse
+   */
+  public function getLastDownsReport()
+  {
+    return $this->getLastDowns();
   }
 
   /**
@@ -358,9 +390,21 @@ class PingdomApiClient
    *
    * @return PingdomApiReportGetNotificationsResponse
    */
-  public function getNotificationsReport(PingdomApiReportGetNotificationsRequest $request)
+  public function getNotifications(PingdomApiReportGetNotificationsRequest $request)
   {
     return new PingdomApiReportGetNotificationsResponse($this->callSoapClient('Report_getNotifications', $request));
+  }
+
+  /**
+   * @deprecated
+   *
+   * @param PingdomApiReportGetNotificationsRequest $request
+   *
+   * @return PingdomApiReportGetNotificationsResponse
+   */
+  public function getNotificationsReport(PingdomApiReportGetNotificationsRequest $request)
+  {
+    return $this->getNotifications($request);
   }
 
   /**
@@ -372,9 +416,21 @@ class PingdomApiClient
    *
    * @return PingdomApiReportGetOutagesResponse
    */
-  public function getOutagesReport(PingdomApiReportGetOutagesRequest $request)
+  public function getOutages(PingdomApiReportGetOutagesRequest $request)
   {
     return new PingdomApiReportGetOutagesResponse($this->callSoapClient('Report_getOutages', $request));
+  }
+
+  /**
+   * @deprecated
+   *
+   * @param PingdomApiReportGetOutagesRequest $request
+   *
+   * @return PingdomApiReportGetOutagesResponse
+   */
+  public function getOutagesReport(PingdomApiReportGetOutagesRequest $request)
+  {
+    return $this->getOutages($request);
   }
 
   /**
@@ -386,9 +442,21 @@ class PingdomApiClient
    *
    * @return PingdomApiReportGetRawDataResponse
    */
-  public function getRawDataReport(PingdomApiReportGetRawDataRequest $request)
+  public function getRawData(PingdomApiReportGetRawDataRequest $request)
   {
     return new PingdomApiReportGetRawDataResponse($this->callSoapClient('Report_getRawData', $request));
+  }
+
+  /**
+   * @deprecated
+   *
+   * @param PingdomApiReportGetRawDataRequest $request
+   *
+   * @return PingdomApiReportGetRawDataResponse
+   */
+  public function getRawDataReport(PingdomApiReportGetRawDataRequest $request)
+  {
+    return $this->getRawData($request);
   }
 
   /**
@@ -400,8 +468,20 @@ class PingdomApiClient
    *
    * @return PingdomApiReportGetResponseTimesResponse
    */
-  public function getResponseTimesReport(PingdomApiReportGetResponseTimesRequest $request)
+  public function getResponseTimes(PingdomApiReportGetResponseTimesRequest $request)
   {
     return new PingdomApiReportGetResponseTimesResponse($this->callSoapClient('Report_getResponseTimes', $request));
+  }
+
+  /**
+   * @deprecated
+   *
+   * @param PingdomApiReportGetResponseTimesRequest $request
+   *
+   * @return PingdomApiReportGetResponseTimesResponse
+   */
+  public function getResponseTimesReport(PingdomApiReportGetResponseTimesRequest $request)
+  {
+    return $this->getResponseTimes($request);
   }
 }
