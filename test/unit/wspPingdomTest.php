@@ -11,7 +11,7 @@
 
 require_once(dirname(__FILE__) . '/../bootstrap/unit.php');
 
-$plannedTests = 22;
+$plannedTests = 23;
 $limeTest = new lime_test($plannedTests, new lime_output_color());
 
 sfContext::createInstance(ProjectConfiguration::getApplicationConfiguration('mkt', 'test', true));
@@ -91,7 +91,13 @@ $downtimeRequest->setCheckName($pingdomApi->getCheckName());
 $downtimeRequest->setResolution(PingdomApiReportResolutionEnum::DAILY);
 $response = $pingdomApi->getClient()->getDowntimesReport($downtimeRequest);
 
+$limeTest->isa_ok($response, 'PingdomApiReportGetDowntimesResponse', 'notification response ok');
 $limeTest->is($response->getStatus(), PingdomApiClient::STATUS_OK, 'got downtime report');
+$limeTest->plan += count($response->getDowntimes());
+foreach ($response->getDowntimes() as $eachDowntime)
+{
+	$limeTest->isa_ok($eachDowntime, 'PingdomApiReportDowntimeEntry', 'downtime entry ok');
+}
 
 
 
