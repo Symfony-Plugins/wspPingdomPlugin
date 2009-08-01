@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -13,6 +13,8 @@
  * Response class of Auth_login function. It contains field for status of the performed operation, and field for obtained session ID.
  *
  * @see http://www.pingdom.com/services/api-documentation/class_LoginResponse
+ *
+ * @throws PingdomApiInvalidResponseException
  */
 class PingdomApiAuthLoginResponse extends PingdomApiResponse
 {

@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -24,7 +24,7 @@ class PingdomApiReportGetResponseTimesRequest extends PingdomApiRequest
   private $checkName;
 
   /**
-   * Resolution for downtime analysis.
+   * Resolution for response time analysis.
    *
    * @var string
    */
@@ -39,6 +39,8 @@ class PingdomApiReportGetResponseTimesRequest extends PingdomApiRequest
 
   /**
    * Set the check for downtime request.
+   *
+   * @throws PingdomApiInvalidArgumentException
    *
    * @param string $name
    *
@@ -58,6 +60,8 @@ class PingdomApiReportGetResponseTimesRequest extends PingdomApiRequest
 
   /**
    * Set the resolution for response time request.
+   *
+   * @throws PingdomApiInvalidArgumentException
    *
    * @param string $resolution
    *

@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -13,13 +13,15 @@
  * Response class of Report_getDowntimes function. It contains field for status of the performed operation, and field for list of downtime objects for current user.
  *
  * @see http://www.pingdom.com/services/api-documentation/class_GetDowntimesResponse
+ *
+ * @throws PingdomApiInvalidResponseException
  */
 class PingdomApiReportGetDowntimesResponse extends PingdomApiResponse
 {
   /**
    * Array of downtime objects, where each contains downtime info for a particular period of time.
    *
-   * @var array
+   * @var array of PingdomApiReportDowntimeEntry
    */
   private $downtimesArray;
 
@@ -29,7 +31,11 @@ class PingdomApiReportGetDowntimesResponse extends PingdomApiResponse
 
     if (isset($apiResponse->downtimesArray))
     {
-      $this->downtimesArray = $apiResponse->downtimesArray;
+      $this->downtimesArray = array();
+      foreach ($apiResponse->downtimesArray as $eachDownTimeEntry)
+      {
+      	$this->downtimesArray[] = new PingdomApiReportDowntimeEntry($eachDownTimeEntry);
+      }
     }
     else
     {
@@ -40,7 +46,7 @@ class PingdomApiReportGetDowntimesResponse extends PingdomApiResponse
   /**
    * Get the downtimes report.
    *
-   * @return array
+   * @return array of PingdomApiReportDowntimeEntry
    */
   public function getDowntimes()
   {

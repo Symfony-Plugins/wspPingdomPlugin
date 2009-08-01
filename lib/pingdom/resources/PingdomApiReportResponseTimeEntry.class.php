@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -13,13 +13,15 @@
  * Class that describes response time in one period of time.
  *
  * @see http://www.pingdom.com/services/api-documentation/class_ResponseTimeEntry
+ *
+ * @throws PingdomApiInvalidArgumentException
  */
 class PingdomApiReportResponseTimeEntry
 {
   /**
    * Start time of response time analysis.
    *
-   * @var string
+   * @var DateTime
    */
   private $from;
 

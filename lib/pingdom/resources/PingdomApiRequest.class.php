@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -17,28 +17,28 @@
 class PingdomApiRequest
 {
   /**
-   * Start of time period for notifications analysis.
+   * Start of time period for analysis.
    *
    * @var DateTime
    */
   protected $fromDate;
 
   /**
-   * End of time period for notifications analysis.
+   * End of time period for analysis.
    *
    * @var DateTime
    */
   protected $toDate;
 
   /**
-   * Number of pages for notifications analysis.
+   * Number of pages for analysis.
    *
    * @var int
    */
   protected $pageNumber = 1;
 
   /**
-   * Number of results per page for notifications analysis.
+   * Number of results per page for analysis.
    *
    * @var int defaults to 25
    */

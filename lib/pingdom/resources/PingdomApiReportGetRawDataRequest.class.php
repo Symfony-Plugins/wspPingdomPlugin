@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -24,7 +24,9 @@ class PingdomApiReportGetRawDataRequest extends PingdomApiRequest
   private $checkName;
 
   /**
-   * Set the check for downtime request.
+   * Set the check for raw data analysis.
+   *
+   * @throws PingdomApiInvalidArgumentException
    *
    * @param string $name
    *

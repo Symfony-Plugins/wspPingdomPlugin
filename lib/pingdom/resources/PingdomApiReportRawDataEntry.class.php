@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -13,6 +13,8 @@
  * Function Report_getRawData returns this as object that describes one raw check.
  *
  * @see http://www.pingdom.com/services/api-documentation/class_RawDataEntry
+ *
+ * @throws PingdomApiInvalidArgumentException
  */
 class PingdomApiReportRawDataEntry
 {
@@ -122,7 +124,7 @@ class PingdomApiReportRawDataEntry
   /**
    * Get the check states.
    *
-   * @return array
+   * @return string
    */
   public function getCheckState()
   {

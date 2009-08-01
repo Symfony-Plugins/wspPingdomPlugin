@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -13,13 +13,15 @@
  * Response class of Report_getNotifications function. It contains field for status of the performed operation, and field for list of notification objects.
  *
  * @see http://www.pingdom.com/services/api-documentation/class_GetNotificationsResponse
+ *
+ * @throws PingdomApiInvalidResponseException
  */
 class PingdomApiReportGetNotificationsResponse extends PingdomApiResponse
 {
   /**
    * Array of notification response items.
    *
-   * @var array
+   * @var array of PingdomApiReportGetNotificationsResponseItem
    */
   private $notificationsResponseArray;
 

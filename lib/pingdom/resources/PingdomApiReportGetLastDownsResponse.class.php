@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -12,14 +12,16 @@
 /**
  * Response class of Report_getLastDowns function. It contains field for status of the performed operation, and field for list of last down entries.
  *
- * @see http://www.pingdom.com/services/api-documentation/operation_getLastDowns
+ * @see http://www.pingdom.com/services/api-documentation/class_GetLastDownsResponse
+ *
+ * @throws PingdomApiInvalidResponseException
  */
 class PingdomApiReportGetLastDownsResponse extends PingdomApiResponse
 {
   /**
    * Array of last downs.
    *
-   * @var array
+   * @var array of PingdomApiReportLastDownEntry
    */
   private $lastDowns;
 
@@ -44,7 +46,7 @@ class PingdomApiReportGetLastDownsResponse extends PingdomApiResponse
   /**
    * Get the last downs
    *
-   * @return array
+   * @return array of PingdomApiReportLastDownEntry
    */
   public function getLastDowns()
   {

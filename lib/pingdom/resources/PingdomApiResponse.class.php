@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -20,7 +20,7 @@
 class PingdomApiResponse
 {
   /**
-   * Status of performed Auth_login function. List of status codes can be found here.
+   * Status of performed function.
    *
    * @var int
    */
@@ -43,6 +43,8 @@ class PingdomApiResponse
 
   /**
    * Set the current status code.
+   *
+   * @throws PingdomApiInvalidArgumentException
    *
    * @param int $status
    *

@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -13,18 +13,20 @@
  * Function Report_getLastDowns returns this as information of last down time for each check.
  *
  * @see http://www.pingdom.com/services/api-documentation/class_LastDownEntry
+ *
+ * @throws PingdomApiInvalidArgumentException
  */
 class PingdomApiReportLastDownEntry
 {
   /**
-   * The name of this entry.
+   * Name of a check.
    *
    * @var string
    */
   private $checkName;
 
   /**
-   * The datetime of the last down of this entry.
+   * The datetime of the last down of the given check.
    *
    * @var DateTime | false
    */

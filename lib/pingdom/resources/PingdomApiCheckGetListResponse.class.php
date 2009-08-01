@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -12,14 +12,16 @@
 /**
  * Response class of Check_getList function. It contains field for status of the performed operation, and field for list of check names for current user.
  *
- * @see http://www.pingdom.com/services/api-documentation/class_EchoResponse
+ * @see http://www.pingdom.com/services/api-documentation/class_GetCheckNamesResponse
+ *
+ * @throws PingdomApiInvalidResponseException
  */
 class PingdomApiCheckGetListResponse extends PingdomApiResponse
 {
   /**
    * Array of check names.
    *
-   * @var array
+   * @var array of string
    */
   private $checkNames;
 

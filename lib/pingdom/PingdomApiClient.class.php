@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    lib
+ * @subpackage    pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -121,6 +121,8 @@ class PingdomApiClient
   /**
    * Get a string representation of the retrieved status code.
    *
+   * @see http://www.pingdom.com/services/api-documentation/list_statusCodes
+   *
    * @param int $code
    *
    * @return string
@@ -147,11 +149,13 @@ class PingdomApiClient
   }
 
   /**
-   * Test the Pingdom API with a simple echo.
+   * Tests if web service is working properly by returning input string as output.
+   *
+   * @see http://www.pingdom.com/services/api-documentation/operation_echoAPI
    *
    * @param string $string
    *
-   * @return stdClass
+   * @return PingdomApiTestEchoResponse
    */
   public function Test_echo($string)
   {
@@ -160,6 +164,8 @@ class PingdomApiClient
 
   /**
    * Call a method on the soap client with api key and session id.
+   *
+   * @throws PingdomApiException
    *
    * @param string $method
    * @param PingdomApiRequest $request
@@ -213,11 +219,14 @@ class PingdomApiClient
   }
 
   /**
-   * Login to the Pingdom API
+   * Logs the user with its credentials and provides him a session ID.
+   *
+   * @see http://www.pingdom.com/services/api-documentation/operation_login
+   * @see https://pp.pingdom.com/index.php/member/api
    *
    * @throws PingdomApiCredentialsException
    *
-   * @param string $apiKey
+   * @param string $apiKey API key. You will find your API key in the 'Pingdom API' section of Pingdom Panel.
    * @param PingdomApiAuthCredentialsData $credentials
    *
    * @return PingdomApiAuthLoginResponse
@@ -259,7 +268,9 @@ class PingdomApiClient
   }
 
   /**
-   * Logout from Pingdom API
+   * Logs out the user and destroys its session.
+   *
+   * @see http://www.pingdom.com/services/api-documentation/operation_logout
    *
    * @return PingdomApiAuthLogoutResponse
    */
@@ -291,6 +302,8 @@ class PingdomApiClient
   /**
    * Returns all Pingdom check locations.
    *
+   * @see http://www.pingdom.com/services/api-documentation/operation_getLocations
+   *
    * @return PingdomApiLocationGetListResponse
    */
   public function getLocationList()
@@ -301,6 +314,8 @@ class PingdomApiClient
   /**
    * Returns last state of every user's check.
    *
+   * @see http://www.pingdom.com/services/api-documentation/operation_getCurrentStates
+   *
    * @return PingdomApiReportGetCurrentStatesResponse
    */
   public function getCurrentReportStates()
@@ -309,11 +324,13 @@ class PingdomApiClient
   }
 
   /**
-   * Returns a downtime report.
+   * Returns downtime summary for current user.
+   *
+   * @see http://www.pingdom.com/services/api-documentation/operation_getDowntimes
    *
    * @param PingdomApiReportGetDownTimesRequest $request
    *
-   * @return PingdomApiReportGetDowntimesReponse
+   * @return PingdomApiReportGetDowntimesResponse
    */
   public function getDowntimesReport(PingdomApiReportGetDownTimesRequest $request)
   {
@@ -321,7 +338,9 @@ class PingdomApiClient
   }
 
   /**
-   * Returns the last downs.
+   * Returns last down for every user's check.
+   *
+   * @see http://www.pingdom.com/services/api-documentation/operation_getLastDowns
    *
    * @return PingdomApiReportGetLastDownsResponse
    */
@@ -331,7 +350,9 @@ class PingdomApiClient
   }
 
   /**
-   * Returns the latest notifications.
+   * Returns notifications for desired contacts and check names for current user.
+   *
+   * @see http://www.pingdom.com/services/api-documentation/operation_getNotifications
    *
    * @param PingdomApiReportGetNotificationsRequest $request
    *
@@ -345,6 +366,8 @@ class PingdomApiClient
   /**
    * Returns outages in a given period for current user.
    *
+   * @see http://www.pingdom.com/services/api-documentation/operation_getOutages
+   *
    * @param PingdomApiReportGetOutagesRequest $request
    *
    * @return PingdomApiReportGetOutagesResponse
@@ -357,6 +380,8 @@ class PingdomApiClient
   /**
    * Returns raw data for a check.
    *
+   * @see http://www.pingdom.com/services/api-documentation/operation_getRawData
+   *
    * @param PingdomApiReportGetRawDataRequest $request
    *
    * @return PingdomApiReportGetRawDataResponse
@@ -368,6 +393,8 @@ class PingdomApiClient
 
   /**
    * Returns response times summary for current user.
+   *
+   * @see http://www.pingdom.com/services/api-documentation/operation_getResponseTimes
    *
    * @param PingdomApiReportGetResponseTimesRequest $request
    *

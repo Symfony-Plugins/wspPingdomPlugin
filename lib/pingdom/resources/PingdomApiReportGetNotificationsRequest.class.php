@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -89,6 +89,8 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
   /**
    * Set the status for notification request.
    *
+   * @throws PingdomApiInvalidArgumentException
+   *
    * @param array $status
    *
    * @return PingdomApiReportGetNotificationsRequest this
@@ -110,6 +112,8 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
 
   /**
    * Set the via for notification request.
+   *
+   * @throws PingdomApiInvalidArgumentException
    *
    * @param array $via
    *
@@ -133,7 +137,7 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
   /**
    * Get the check names.
    *
-   * @return array
+   * @return array of string
    */
   public function getCheckNames()
   {
@@ -143,7 +147,7 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
   /**
    * Get the contacts.
    *
-   * @return array
+   * @return array of string
    */
   public function getContacts()
   {
@@ -153,7 +157,7 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
   /**
    * Get the status.
    *
-   * @return array
+   * @return array of string
    */
   public function getStatus()
   {
@@ -163,7 +167,7 @@ class PingdomApiReportGetNotificationsRequest extends PingdomApiRequest
   /**
    * Get the via.
    *
-   * @return array
+   * @return array of string
    */
   public function getVia()
   {

@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -13,6 +13,8 @@
  * Request class of Report_getDowntimes function. It specifies which check should be analyzed, total time range for downtime analysis, and resolution that divides total time range into chunks. To avoid flooding server and client with large data sets, total number of chunks is limited to 55. If number of chunks exceeds 55, Report_getDowntimes function will return 'Invalid argument' error.
  *
  * @see http://www.pingdom.com/services/api-documentation/class_GetDowntimesRequest
+ *
+ * @throws PingdomApiInvalidArgumentException
  */
 class PingdomApiReportGetDowntimesRequest extends PingdomApiRequest
 {
@@ -33,6 +35,8 @@ class PingdomApiReportGetDowntimesRequest extends PingdomApiRequest
   /**
    * Set the check for downtime request.
    *
+   * @throws PingdomApiInvalidArgumentException
+   *
    * @param string $name
    *
    * @return PingdomApiReportGetDowntimesRequest this
@@ -51,6 +55,8 @@ class PingdomApiReportGetDowntimesRequest extends PingdomApiRequest
 
   /**
    * Set the resolution for downtime request.
+   *
+   * @throws PingdomApiInvalidArgumentException
    *
    * @param string $resolution
    *

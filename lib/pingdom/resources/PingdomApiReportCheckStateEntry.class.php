@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -13,6 +13,8 @@
  * Function Report_getCurrentStates return this as a state object for each check.
  *
  * @see http://www.pingdom.com/services/api-documentation/class_CheckStateEntry
+ *
+ * @throws PingdomApiInvalidArgumentException
  */
 class PingdomApiReportCheckStateEntry
 {

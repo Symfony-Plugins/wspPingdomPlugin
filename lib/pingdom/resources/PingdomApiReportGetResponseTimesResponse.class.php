@@ -4,7 +4,7 @@
  * @link          http://toni.uebernickel.info/
  *
  * @package       wspPingdomPlugin
- * @subpackage    pingdom.lib
+ * @subpackage    resources.pingdom.lib
  * @version       $Id$
  * @link          $HeadURL$
  */
@@ -13,11 +13,13 @@
  * Response class of Report_getResponseTimes function. It contains field for status of the performed operation, and field for list of response time objects.
  *
  * @see http://www.pingdom.com/services/api-documentation/class_GetResponseTimesResponse
+ *
+ * @throws PingdomApiInvalidResponseException
  */
 class PingdomApiReportGetResponseTimesResponse extends PingdomApiResponse
 {
   /**
-   * Array of raw data objects.
+   * Array of response time objects, where each contains response time info for a particular period of time.
    *
    * @var array of PingdomApiReportResponseTimeEntry
    */
